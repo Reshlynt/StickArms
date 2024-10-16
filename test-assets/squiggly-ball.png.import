@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddn8v0hf0c8rg"
-path="res://.godot/imported/Untitled.png-30da513a925d9064453decddf41ecbd4.ctex"
+uid="uid://yewahvg75ni6"
+path="res://.godot/imported/squiggly-ball.png-b8b9bba91c583fa7cf9d721a181ca084.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Untitled.png"
-dest_files=["res://.godot/imported/Untitled.png-30da513a925d9064453decddf41ecbd4.ctex"]
+source_file="res://test-assets/squiggly-ball.png"
+dest_files=["res://.godot/imported/squiggly-ball.png-b8b9bba91c583fa7cf9d721a181ca084.ctex"]
 
 [params]
 
