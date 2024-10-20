@@ -20,3 +20,7 @@ func _on_player_health_depleted() -> void:
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+# Return to main menu
+func _on_quit_to_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://game_manage/main-menu.tscn")

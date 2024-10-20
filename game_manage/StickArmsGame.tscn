@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cn88yvujw1flg"]
 
-[ext_resource type="Script" path="res://scene/game_manager.gd" id="1_h4cdg"]
-[ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://scene/player.tscn" id="1_p3jh8"]
-[ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://scene/tree.tscn" id="2_m4uln"]
-[ext_resource type="Texture2D" uid="uid://dpecgfk23omgh" path="res://icon.svg" id="4_26u7q"]
-[ext_resource type="Script" path="res://scene/pause_manager.gd" id="5_prhwm"]
+[ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
+[ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
+[ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://game_manage/tree.tscn" id="3_v36t5"]
+[ext_resource type="Texture2D" uid="uid://dpecgfk23omgh" path="res://icon.svg" id="4_qpie2"]
+[ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
 
 [sub_resource type="Curve2D" id="Curve2D_vc822"]
 _data = {
@@ -14,9 +14,12 @@ point_count = 5
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_h4cdg")
+script = ExtResource("1_gd34c")
 
-[node name="Player" parent="." instance=ExtResource("1_p3jh8")]
+[node name="PauseManager" type="Node" parent="."]
+script = ExtResource("5_mqvo1")
+
+[node name="Player" parent="." instance=ExtResource("2_rqvhg")]
 unique_name_in_owner = true
 position = Vector2(576, 324)
 
@@ -39,13 +42,13 @@ unique_name_in_owner = true
 position = Vector2(-149, -176)
 rotation = 1.57274
 
-[node name="Tree" parent="." instance=ExtResource("2_m4uln")]
+[node name="Tree" parent="." instance=ExtResource("3_v36t5")]
 position = Vector2(393, 352)
 
-[node name="Tree2" parent="." instance=ExtResource("2_m4uln")]
+[node name="Tree2" parent="." instance=ExtResource("3_v36t5")]
 position = Vector2(773, 434)
 
-[node name="Tree3" parent="." instance=ExtResource("2_m4uln")]
+[node name="Tree3" parent="." instance=ExtResource("3_v36t5")]
 position = Vector2(552, 111)
 
 [node name="Timer" type="Timer" parent="."]
@@ -81,23 +84,33 @@ theme_override_font_sizes/font_size = 81
 text = "Game Over"
 horizontal_alignment = 1
 
-[node name="Retry" type="Button" parent="GameOver/ColorRect"]
-process_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = 61.0
-offset_right = 104.0
-offset_bottom = 119.0
+offset_left = -99.0
+offset_top = 52.0
+offset_right = 111.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Retry" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 36
 action_mode = 0
 text = "Retry"
+
+[node name="QuitToMenu" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Quit"
 
 [node name="HeadUpDisplay" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -112,7 +125,7 @@ offset_right = 48.0
 offset_bottom = 149.0
 grow_horizontal = 0
 scale = Vector2(0.48086, 0.48086)
-icon = ExtResource("4_26u7q")
+icon = ExtResource("4_qpie2")
 
 [node name="PauseScreen" type="ColorRect" parent="HeadUpDisplay"]
 unique_name_in_owner = true
@@ -141,29 +154,31 @@ theme_override_font_sizes/font_size = 81
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="HeadUpDisplay/PauseScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HeadUpDisplay/PauseScreen"]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 372.0
+offset_right = 679.0
+offset_bottom = 492.0
+
+[node name="ResumeButton" type="Button" parent="HeadUpDisplay/PauseScreen/VBoxContainer"]
 process_mode = 2
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = 61.0
-offset_right = 104.0
-offset_bottom = 119.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 36
 action_mode = 0
 text = "Resume"
 
-[node name="PauseManager" type="Node" parent="."]
-script = ExtResource("5_prhwm")
+[node name="QuitToMenu" type="Button" parent="HeadUpDisplay/PauseScreen/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Quit"
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="GameOver/ColorRect/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseButton" to="PauseManager" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="HeadUpDisplay/PauseScreen/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/QuitToMenu" to="PauseManager" method="_on_quit_to_menu_pressed"]
