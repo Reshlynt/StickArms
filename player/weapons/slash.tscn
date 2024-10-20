@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbk1vgdhsl6c4"]
+
+[ext_resource type="Texture2D" uid="uid://bbpuo26q6axkm" path="res://player/weapons/horizontal-slash.png" id="1_gxyyo"]
+[ext_resource type="Script" path="res://player/weapons/slash.gd" id="1_y3o7g"]
+
+[node name="Slash" type="Area2D"]
+script = ExtResource("1_y3o7g")
+
+[node name="Horizontal-slash" type="Sprite2D" parent="."]
+scale = Vector2(0.600463, 0.600463)
+texture = ExtResource("1_gxyyo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-514, -210, -511, -162, -149, -201, 213, -175, 309, -109, 231, 93, 127, 184, 216, 186, 351, 54, 412, -116, 276, -232, -81, -282, -336, -242)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
