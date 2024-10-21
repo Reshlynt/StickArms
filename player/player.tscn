@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdhnytpd8u7s2"]
 
-[ext_resource type="Script" path="res://script/player.gd" id="1_g1wyw"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_g1wyw"]
 [ext_resource type="Texture2D" uid="uid://cqoiohxmawnud" path="res://test-assets/not-happy-ball.png" id="2_dm3nd"]
-[ext_resource type="PackedScene" uid="uid://kr7xtgdk33kd" path="res://scene/gun.tscn" id="3_s8hnx"]
+[ext_resource type="PackedScene" uid="uid://dbk1vgdhsl6c4" path="res://player/weapons/slash.tscn" id="3_5oqgq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_meo1u"]
 radius = 26.0
@@ -26,7 +26,7 @@ corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g1wyw")
-SPEED = 500
+SPEED = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0.724664, 0.72623, 1)
@@ -36,8 +36,6 @@ texture = ExtResource("2_dm3nd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_meo1u")
-
-[node name="Gun" parent="." instance=ExtResource("3_s8hnx")]
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -52,11 +50,17 @@ debug_color = Color(0.925022, 0.203444, 0.465446, 0.42)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -102.0
-offset_top = -72.0
-offset_right = 104.0
-offset_bottom = -45.0
+z_index = 1
+offset_left = -48.0
+offset_top = 45.0
+offset_right = 50.0
+offset_bottom = 72.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nq8o5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_su122")
 value = 100.0
 show_percentage = false
+
+[node name="Slash" parent="." instance=ExtResource("3_5oqgq")]
+position = Vector2(190, 12)
+collision_layer = 0
+collision_mask = 2

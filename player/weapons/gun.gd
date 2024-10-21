@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 
 # Create the projectile scene
 func shoot():
-	const BULLET = preload("res://scene/bullet.tscn")
+	const BULLET = preload("res://player/weapons/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootPoint.global_position
 	new_bullet.global_rotation = %ShootPoint.global_rotation

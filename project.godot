@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Stick Race"
-run/main_scene="res://scene/StickRaceGame.tscn"
+config/name="Stick Arms"
+run/main_scene="res://game_manage/main-menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
