@@ -19,99 +19,6 @@ script = ExtResource("1_gd34c")
 [node name="PauseManager" type="Node" parent="."]
 script = ExtResource("5_mqvo1")
 
-[node name="Player" parent="." instance=ExtResource("2_rqvhg")]
-unique_name_in_owner = true
-position = Vector2(576, 324)
-
-[node name="Background" type="CanvasLayer" parent="Player"]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="Player/Background"]
-offset_right = 1156.0
-offset_bottom = 648.0
-color = Color(0.856006, 0.361786, 0.456508, 1)
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-
-[node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-576, -324)
-curve = SubResource("Curve2D_vc822")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
-unique_name_in_owner = true
-position = Vector2(-149, -176)
-rotation = 1.57274
-
-[node name="Tree" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(393, 352)
-
-[node name="Tree2" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(773, 434)
-
-[node name="Tree3" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(552, 111)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.4
-autostart = true
-
-[node name="GameOver" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.299547, 0.299547, 0.299547, 0.572549)
-
-[node name="Label" type="Label" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = -49.0
-offset_right = 135.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 81
-text = "Game Over"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.0
-offset_top = 52.0
-offset_right = 111.0
-offset_bottom = 172.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Retry" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
-process_mode = 2
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-action_mode = 0
-text = "Retry"
-
-[node name="QuitToMenu" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
-process_mode = 2
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-action_mode = 0
-text = "Quit"
-
 [node name="HeadUpDisplay" type="CanvasLayer" parent="."]
 process_mode = 3
 
@@ -175,10 +82,86 @@ theme_override_font_sizes/font_size = 36
 action_mode = 0
 text = "Quit"
 
-[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+[node name="Player" parent="." instance=ExtResource("2_rqvhg")]
+unique_name_in_owner = true
+position = Vector2(576, 324)
+SPEED = 290
+
+[node name="Background" type="CanvasLayer" parent="Player"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Player/Background"]
+offset_right = 1156.0
+offset_bottom = 648.0
+color = Color(0.856006, 0.361786, 0.456508, 1)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-576, -324)
+curve = SubResource("Curve2D_vc822")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-149, -176)
+rotation = 1.57274
+
+[node name="Tree" parent="." instance=ExtResource("3_v36t5")]
+position = Vector2(393, 352)
+
+[node name="Tree2" parent="." instance=ExtResource("3_v36t5")]
+position = Vector2(773, 434)
+
+[node name="Tree3" parent="." instance=ExtResource("3_v36t5")]
+position = Vector2(552, 111)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.299547, 0.299547, 0.299547, 0.572549)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -49.0
+offset_right = 135.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 81
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="QuitToMenu" type="Button" parent="GameOver/ColorRect"]
+process_mode = 2
+layout_mode = 2
+offset_left = 477.0
+offset_top = 386.0
+offset_right = 687.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+text = "Quit"
+
 [connection signal="pressed" from="HeadUpDisplay/PauseButton" to="PauseManager" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/QuitToMenu" to="PauseManager" method="_on_quit_to_menu_pressed"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/ColorRect/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]

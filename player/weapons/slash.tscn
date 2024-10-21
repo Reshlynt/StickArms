@@ -4,13 +4,28 @@
 [ext_resource type="Script" path="res://player/weapons/slash.gd" id="1_y3o7g"]
 
 [node name="Slash" type="Area2D"]
+scale = Vector2(0.343337, 0.343337)
 script = ExtResource("1_y3o7g")
 
 [node name="Horizontal-slash" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
 scale = Vector2(0.600463, 0.600463)
 texture = ExtResource("1_gxyyo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-514, -210, -511, -162, -149, -201, 213, -175, 309, -109, 231, 93, 127, 184, 216, 186, 351, 54, 412, -116, 276, -232, -81, -282, -336, -242)
+unique_name_in_owner = true
+visible = false
+polygon = PackedVector2Array(-514, -210, -511, -162, -454.365, 125.242, -128.154, 160.193, 14.563, 180.581, 127, 184, 259.221, 192.231, 369.899, 52.4267, 422.326, -133.979, 256.308, -241.745, -69.9023, -288.347, -336, -242)
+disabled = true
+
+[node name="TimerToRest" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerToAttack" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerToRest" to="." method="_on_timer_to_rest_timeout"]
+[connection signal="timeout" from="TimerToAttack" to="." method="_on_timer_to_attack_timeout"]
