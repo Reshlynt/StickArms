@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlbjyt7yj8aub"]
+
+[ext_resource type="Script" path="res://player/weapons/dagger.gd" id="1_3k1vi"]
+[ext_resource type="Texture2D" uid="uid://cs6u3c8p168cj" path="res://test-assets/Dagger.png" id="1_s4ddi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1pjt"]
+size = Vector2(53, 107)
+
+[node name="Dagger" type="Area2D" groups=["attack"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_3k1vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s4ddi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, -19)
+shape = SubResource("RectangleShape2D_c1pjt")
+
+[node name="Timer" type="Timer" parent="."]

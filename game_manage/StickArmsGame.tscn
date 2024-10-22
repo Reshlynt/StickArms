@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn88yvujw1flg"]
+[gd_scene load_steps=9 format=3 uid="uid://cn88yvujw1flg"]
 
 [ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
 [ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
 [ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://game_manage/tree.tscn" id="3_v36t5"]
 [ext_resource type="Texture2D" uid="uid://dpecgfk23omgh" path="res://icon.svg" id="4_qpie2"]
 [ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
+[ext_resource type="Script" path="res://game_manage/panel.gd" id="6_e8qg4"]
 
 [sub_resource type="Curve2D" id="Curve2D_vc822"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -149, -176, 0, 0, 0, 0, -151, 852, 0, 0, 0, 0, 1474, 846, 0, 0, 0, 0, 1472, -171, 0, 0, 0, 0, -149, -176)
 }
 point_count = 5
+
+[sub_resource type="GDScript" id="GDScript_4ae50"]
+script/source = "extends CanvasLayer
+"
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -159,9 +164,35 @@ theme_override_font_sizes/font_size = 36
 action_mode = 0
 text = "Quit"
 
+[node name="Timer2" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_4ae50")
+
+[node name="Panel" type="Panel" parent="Timer2"]
+offset_right = 52.0
+offset_bottom = 23.0
+script = ExtResource("6_e8qg4")
+
+[node name="Minutes" type="Label" parent="Timer2/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_right = 26.0
+offset_bottom = 23.0
+text = "00:"
+horizontal_alignment = 2
+
+[node name="Seconds" type="Label" parent="Timer2/Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 27.0
+offset_right = 48.0
+offset_bottom = 24.0
+text = "00"
+
 [connection signal="pressed" from="HeadUpDisplay/PauseButton" to="PauseManager" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/ResumeButton" to="PauseManager" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseScreen/VBoxContainer/QuitToMenu" to="PauseManager" method="_on_quit_to_menu_pressed"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="health_depleted" from="Player" to="Timer2/Panel" method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOver/ColorRect/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
