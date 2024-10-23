@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn88yvujw1flg"]
+[gd_scene load_steps=6 format=3 uid="uid://cn88yvujw1flg"]
 
 [ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
 [ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
-[ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://game_manage/tree.tscn" id="3_v36t5"]
 [ext_resource type="Texture2D" uid="uid://dpecgfk23omgh" path="res://icon.svg" id="4_qpie2"]
 [ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
 
@@ -51,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = -49.0
-offset_right = 135.0
-offset_bottom = 50.0
+offset_left = -142.5
+offset_top = -55.5
+offset_right = 142.5
+offset_bottom = 55.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 81
@@ -62,11 +61,18 @@ text = "Paused"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HeadUpDisplay/PauseScreen"]
-layout_mode = 0
-offset_left = 481.0
-offset_top = 372.0
-offset_right = 679.0
-offset_bottom = 492.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = 66.0
+offset_right = 99.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ResumeButton" type="Button" parent="HeadUpDisplay/PauseScreen/VBoxContainer"]
 process_mode = 2
@@ -91,29 +97,23 @@ SPEED = 290
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Player/Background"]
-offset_right = 1156.0
-offset_bottom = 648.0
-color = Color(0.856006, 0.361786, 0.456508, 1)
+anchors_preset = -1
+anchor_right = 1.00347
+anchor_bottom = 1.0
+color = Color(0.996839, 0.977107, 0.978874, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 
 [node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-576, -324)
+position = Vector2(-815.247, -370.969)
+scale = Vector2(1.23015, 1.11381)
 curve = SubResource("Curve2D_vc822")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
 unique_name_in_owner = true
 position = Vector2(-149, -176)
 rotation = 1.57274
-
-[node name="Tree" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(393, 352)
-
-[node name="Tree2" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(773, 434)
-
-[node name="Tree3" parent="." instance=ExtResource("3_v36t5")]
-position = Vector2(552, 111)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
