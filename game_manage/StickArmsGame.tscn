@@ -179,6 +179,84 @@ one_way_collision_margin = 0.0
 [node name="Tree" parent="." instance=ExtResource("8_7yr0o")]
 position = Vector2(3184, 1488)
 
+[node name="Tree15" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2512, 752)
+
+[node name="Tree16" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-672, 1176)
+
+[node name="Tree17" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1024, -800)
+
+[node name="Tree18" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(688, -448)
+
+[node name="Tree19" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-360, -248)
+
+[node name="Tree20" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1640, 784)
+
+[node name="Tree21" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1392, -304)
+
+[node name="Tree22" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(488, 1192)
+
+[node name="Tree23" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(1760, 512)
+
+[node name="Tree24" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(1856, 1176)
+
+[node name="Tree25" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(1200, 1320)
+
+[node name="Tree26" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2424, 0)
+
+[node name="Tree27" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2600, -680)
+
+[node name="Tree28" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(1072, -1032)
+
+[node name="Tree29" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-32, -912)
+
+[node name="Tree4" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-2016, 1480)
+
+[node name="Tree5" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1936, -1184)
+
+[node name="Tree6" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(3056, -1152)
+
+[node name="Tree7" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(1968, -736)
+
+[node name="Tree8" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2088, -736)
+
+[node name="Tree9" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2032, -648)
+
+[node name="Tree10" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(2024, -824)
+
+[node name="Tree11" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1208, 376)
+
+[node name="Tree12" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1088, 376)
+
+[node name="Tree13" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1144, 464)
+
+[node name="Tree14" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(-1152, 288)
+
 [node name="Tree2" parent="." instance=ExtResource("8_7yr0o")]
 position = Vector2(392, 304)
 
