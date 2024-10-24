@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
 [ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
 [ext_resource type="Texture2D" uid="uid://cppiw8ed24xhv" path="res://ui_assets/pause-icon.png" id="3_jb0pa"]
-[ext_resource type="Texture2D" uid="uid://damqh3nl2xgsj" path="res://ui_assets/paused.png" id="4_xfgx0"]
+[ext_resource type="Texture2D" uid="uid://c40eg3671d2ma" path="res://ui_assets/paused.png" id="4_xfgx0"]
 [ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
 [ext_resource type="Texture2D" uid="uid://dx0fp7s1at8si" path="res://ui_assets/resume.png" id="5_oej0c"]
 [ext_resource type="Texture2D" uid="uid://c2h2o2fnw80n2" path="res://ui_assets/quit-white.png" id="6_h8y6q"]
@@ -113,7 +113,7 @@ grow_vertical = 2
 color = Color(0.925886, 0.998172, 0.971855, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera2D2" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-576, -324)

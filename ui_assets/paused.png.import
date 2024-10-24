@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:ui_assets/paused.png.import
-uid="uid://damqh3nl2xgsj"
+uid="uid://c40eg3671d2ma"
 path="res://.godot/imported/paused.png-f8a1d2e95101df2341d596458ed555b6.ctex"
-========
-uid="uid://caqfk2xng5v5u"
-path="res://.godot/imported/pine_tree.png-5cff05d6d84aa4de8f36f65faf25667a.ctex"
->>>>>>>> resh-test-branch:tutorial/assets/pine_tree.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:ui_assets/paused.png.import
 source_file="res://ui_assets/paused.png"
 dest_files=["res://.godot/imported/paused.png-f8a1d2e95101df2341d596458ed555b6.ctex"]
-========
-source_file="res://tutorial/assets/pine_tree.png"
-dest_files=["res://.godot/imported/pine_tree.png-5cff05d6d84aa4de8f36f65faf25667a.ctex"]
->>>>>>>> resh-test-branch:tutorial/assets/pine_tree.png.import
 
 [params]
 
