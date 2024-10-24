@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_g1wyw"]
 [ext_resource type="Texture2D" uid="uid://cqoiohxmawnud" path="res://test-assets/not-happy-ball.png" id="2_dm3nd"]
-[ext_resource type="PackedScene" uid="uid://dbk1vgdhsl6c4" path="res://player/weapons/slash.tscn" id="3_5oqgq"]
+[ext_resource type="PackedScene" uid="uid://cutkwrcjmdklh" path="res://player/weapons/slash.tscn" id="3_5oqgq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_meo1u"]
 radius = 26.0
@@ -62,6 +62,3 @@ value = 100.0
 show_percentage = false
 
 [node name="Slash" parent="." instance=ExtResource("3_5oqgq")]
-position = Vector2(190, 12)
-collision_layer = 0
-collision_mask = 2
