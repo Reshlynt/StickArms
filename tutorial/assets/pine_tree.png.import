@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buqvqtx6bpkgw"
-path="res://.godot/imported/projectile.png-d9321afb1883b08940ddab38d72518c6.ctex"
+uid="uid://caqfk2xng5v5u"
+path="res://.godot/imported/pine_tree.png-5cff05d6d84aa4de8f36f65faf25667a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://test-assets/projectile.png"
-dest_files=["res://.godot/imported/projectile.png-d9321afb1883b08940ddab38d72518c6.ctex"]
+source_file="res://tutorial/assets/pine_tree.png"
+dest_files=["res://.godot/imported/pine_tree.png-5cff05d6d84aa4de8f36f65faf25667a.ctex"]
 
 [params]
 

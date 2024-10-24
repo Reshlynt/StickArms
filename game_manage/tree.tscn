@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://o287tvwofyxp"]
 
-[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://test-assets/pine_tree.png" id="1_imo7h"]
+[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://tutorial/assets/pine_tree.png" id="1_imo7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0wi1"]
 radius = 23.0
