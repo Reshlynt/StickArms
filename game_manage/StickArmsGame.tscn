@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
 [ext_resource type="Texture2D" uid="uid://cppiw8ed24xhv" path="res://ui_assets/pause-icon.png" id="3_jb0pa"]
 [ext_resource type="Texture2D" uid="uid://damqh3nl2xgsj" path="res://ui_assets/paused.png" id="4_xfgx0"]
-[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://test-assets/pine_tree.png" id="5_1h26h"]
 [ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
 [ext_resource type="Texture2D" uid="uid://dx0fp7s1at8si" path="res://ui_assets/resume.png" id="5_oej0c"]
 [ext_resource type="Texture2D" uid="uid://c2h2o2fnw80n2" path="res://ui_assets/quit-white.png" id="6_h8y6q"]
+[ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://environment/tree.tscn" id="8_7yr0o"]
 
 [sub_resource type="Curve2D" id="Curve2D_vc822"]
 _data = {
@@ -168,22 +168,6 @@ theme_override_font_sizes/font_size = 36
 action_mode = 0
 text = "Quit"
 
-[node name="PineTree" type="Sprite2D" parent="."]
-position = Vector2(-2067, 1458)
-texture = ExtResource("5_1h26h")
-
-[node name="PineTree2" type="Sprite2D" parent="."]
-position = Vector2(-1908, -1177)
-texture = ExtResource("5_1h26h")
-
-[node name="PineTree3" type="Sprite2D" parent="."]
-position = Vector2(2918, -1158)
-texture = ExtResource("5_1h26h")
-
-[node name="PineTree4" type="Sprite2D" parent="."]
-position = Vector2(3115, 1420)
-texture = ExtResource("5_1h26h")
-
 [node name="Bounds" type="StaticBody2D" parent="."]
 position = Vector2(-1938, -1450)
 collision_layer = 4
@@ -191,6 +175,15 @@ collision_layer = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
 polygon = PackedVector2Array(-331, -81, -379, 3288, 5404, 3192, 5290, 9, -84, -116, -93, 139, 5112, 180, 5252, 3050, -196, 3063, -91, -81)
 one_way_collision_margin = 0.0
+
+[node name="Tree" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(3184, 1488)
+
+[node name="Tree2" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(392, 304)
+
+[node name="Tree3" parent="." instance=ExtResource("8_7yr0o")]
+position = Vector2(808, 368)
 
 [connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Resume" to="PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Quit" to="PauseManager" method="_on_quit_pressed"]
