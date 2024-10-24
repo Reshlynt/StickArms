@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready() -> void:
+	%GameOver.visible = false
+
 #spawns enemies on the path2d node.
 func spawn_mob():
 	var new_mob = preload("res://enemies/enemy.tscn").instantiate()

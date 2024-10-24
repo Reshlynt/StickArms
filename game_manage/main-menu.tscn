@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://5hrdjny1iu4e"]
+[gd_scene load_steps=7 format=3 uid="uid://5hrdjny1iu4e"]
 
 [ext_resource type="Script" path="res://game_manage/main_menu.gd" id="1_4hw1k"]
+[ext_resource type="Texture2D" uid="uid://dvulkk7w1raf8" path="res://ui_assets/title.png" id="2_klaap"]
+[ext_resource type="Theme" uid="uid://bor6xktjlnhlh" path="res://ui_assets/menu.tres" id="2_pbty8"]
+[ext_resource type="Texture2D" uid="uid://b7f21bga1rpki" path="res://ui_assets/start.png" id="3_eqd6q"]
+[ext_resource type="Texture2D" uid="uid://cidwp7he7apta" path="res://ui_assets/settings.png" id="4_oorem"]
+[ext_resource type="Texture2D" uid="uid://ixr23e8j3tc1" path="res://ui_assets/quit.png" id="5_yxtpo"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -13,35 +18,68 @@ script = ExtResource("1_4hw1k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -213.0
-offset_right = -39.0
-offset_bottom = -34.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -140.0
+offset_right = -221.0
+offset_bottom = 39.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
+scale = Vector2(1.81689, 1.81689)
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Quit")
-text = "Start"
+theme = ExtResource("2_pbty8")
+flat = true
 expand_icon = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Start"]
+position = Vector2(87.3331, 29.521)
+scale = Vector2(0.104884, 0.113344)
+texture = ExtResource("3_eqd6q")
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Settings"
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Settings"]
+position = Vector2(87.3331, 42.3237)
+scale = Vector2(0.076965, 0.076965)
+texture = ExtResource("4_oorem")
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../Start")
-text = "Quit"
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Quit"]
+position = Vector2(97.1734, 45.2859)
+scale = Vector2(0.151292, 0.151292)
+texture = ExtResource("5_yxtpo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(372.25, 330.25)
+scale = Vector2(0.72998, 0.72998)
+texture = ExtResource("2_klaap")
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
