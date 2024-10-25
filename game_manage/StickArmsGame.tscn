@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn88yvujw1flg"]
+[gd_scene load_steps=12 format=3 uid="uid://cn88yvujw1flg"]
 
 [ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
 [ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c2h2o2fnw80n2" path="res://ui_assets/quit-white.png" id="6_h8y6q"]
 [ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://environment/tree.tscn" id="8_7yr0o"]
 [ext_resource type="Texture2D" uid="uid://buffqm6psc8sb" path="res://ui_assets/game-over.png" id="8_ec7v4"]
+[ext_resource type="AudioStream" uid="uid://bqyugdtksktjr" path="res://sfx/button-press-trim.wav" id="10_xw7uk"]
 
 [sub_resource type="Curve2D" id="Curve2D_vc822"]
 _data = {
@@ -274,6 +275,12 @@ position = Vector2(1200, -384)
 [node name="Tree3" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
 position = Vector2(808, 368)
 
+[node name="ButtonClickSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_xw7uk")
+volume_db = -10.0
+
+[connection signal="stop_death_sfx" from="." to="Player" method="_on_game_stop_death_sfx"]
 [connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Resume" to="PauseManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Quit" to="PauseManager" method="_on_quit_pressed"]
 [connection signal="pressed" from="HeadUpDisplay/PauseButton" to="PauseManager" method="_on_pause_button_pressed"]

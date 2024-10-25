@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5hrdjny1iu4e"]
+[gd_scene load_steps=6 format=3 uid="uid://5hrdjny1iu4e"]
 
 [ext_resource type="Script" path="res://game_manage/main_menu.gd" id="1_4hw1k"]
 [ext_resource type="Texture2D" uid="uid://dvulkk7w1raf8" path="res://ui_assets/title.png" id="2_klaap"]
 [ext_resource type="Texture2D" uid="uid://b7f21bga1rpki" path="res://ui_assets/start.png" id="3_eqd6q"]
+[ext_resource type="AudioStream" uid="uid://bqyugdtksktjr" path="res://sfx/button-press-trim.wav" id="5_5hn64"]
 [ext_resource type="Texture2D" uid="uid://ixr23e8j3tc1" path="res://ui_assets/quit.png" id="5_yxtpo"]
 
 [node name="Menu" type="Control"]
@@ -56,6 +57,11 @@ size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../Start")
 icon = ExtResource("5_yxtpo")
 flat = true
+
+[node name="ButtonClickSFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_5hn64")
+volume_db = -10.0
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

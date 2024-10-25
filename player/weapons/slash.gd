@@ -52,3 +52,7 @@ func _on_fire_rate_timeout() -> void:
 	# hide attack
 	%Weapon.visible = false
 	%HitBox.disabled = true
+
+
+func _on_player_stop_slash_sfx() -> void:
+	slash_sfx.stop()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdhnytpd8u7s2"]
+[gd_scene load_steps=11 format=3 uid="uid://bdhnytpd8u7s2"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_g1wyw"]
 [ext_resource type="Texture2D" uid="uid://cqoiohxmawnud" path="res://test-assets/not-happy-ball.png" id="2_dm3nd"]
 [ext_resource type="PackedScene" uid="uid://dbk1vgdhsl6c4" path="res://player/weapons/slash.tscn" id="3_5oqgq"]
 [ext_resource type="AudioStream" uid="uid://dst8oqwqlpm3h" path="res://sfx/playerDeath-trim.mp3" id="4_7sdt2"]
+[ext_resource type="AudioStream" uid="uid://bq4c5kr1sypa8" path="res://sfx/footstepsPlayer.mp3" id="5_2d00p"]
 [ext_resource type="AudioStream" uid="uid://dn1djpqos8qur" path="res://sfx/streetAmbiance.mp3.mp3" id="5_y2hsm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_meo1u"]
@@ -72,8 +73,11 @@ volume_db = -5.0
 parameters/looping = true
 
 [node name="Playermovement" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2d00p")
 
 [node name="backgroundmusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_y2hsm")
 autoplay = true
 parameters/looping = true
+
+[connection signal="stop_slash_sfx" from="." to="Slash" method="_on_player_stop_slash_sfx"]

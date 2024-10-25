@@ -1,4 +1,6 @@
 extends Node2D
+signal stop_death_sfx
+@onready var button_click_sfx: AudioStreamPlayer = $ButtonClickSFX
 
 func _ready() -> void:
 	%GameOver.visible = false
@@ -26,5 +28,8 @@ func _on_retry_pressed() -> void:
 
 # Return to main menu
 func _on_quit_to_menu_pressed() -> void:
+	button_click_sfx.play(0.0)
+	await get_tree().create_timer(0.2).timeout
+	stop_death_sfx.emit()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://game_manage/main-menu.tscn")

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 signal health_depleted
+signal stop_slash_sfx
 var health = 100.0
 const DAMAGE_RATE = 5.0
 @export var speed: int = 60
@@ -16,6 +17,8 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0:
 		await get_tree().create_timer(0.09).timeout
 		player_movement_sfx.play()
+	else:
+		pass
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	# decrease health
 	if overlapping_mobs.size() > 0:
@@ -26,5 +29,7 @@ func _physics_process(delta: float) -> void:
 			$Sprite2D.visible = false
 			%HealthBar.visible = false
 			health_depleted.emit()
-	
-	
+
+func _on_game_stop_death_sfx() -> void:
+	player_death_sfx.stop()
+	stop_slash_sfx.emit()
