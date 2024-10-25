@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var health = 3
 @export var speed = 40.0
 @onready var enemy_death_sfx: AudioStreamPlayer2D = $EnemyDeathSFX
-
+@onready var enemyMovement: AudioStreamPlayer2D = $EnemyMovement
 
 # Loads at beginning of game.
 func _ready() -> void:
@@ -17,7 +17,8 @@ func _physics_process(delta: float):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed
 	move_and_slide()
-
+	enemyMovement.play()
+	
 #function to allow enemies to take damage by the player
 func take_damage():
 	health -= 1
