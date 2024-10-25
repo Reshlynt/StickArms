@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbk1vgdhsl6c4"]
+
+[ext_resource type="Texture2D" uid="uid://bbpuo26q6axkm" path="res://player/weapons/horizontal-slash.png" id="1_gxyyo"]
+[ext_resource type="Script" path="res://player/weapons/slash.gd" id="1_y3o7g"]
+[ext_resource type="AudioStream" uid="uid://beso7jhpe5ffd" path="res://sfx/swooshes-trim.mp3" id="3_0ig7s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ge1u"]
+radius = 569.225
+
+[node name="Slash" type="Area2D"]
+rotation = -0.00179307
+scale = Vector2(0.410283, 0.410283)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_y3o7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6ge1u")
+
+[node name="Weapon" type="Marker2D" parent="CollisionShape2D"]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/Weapon"]
+modulate = Color(0.111197, 0.111197, 0.111197, 1)
+position = Vector2(275, -12)
+rotation = 0.273421
+scale = Vector2(0.451769, 0.451769)
+texture = ExtResource("1_gxyyo")
+
+[node name="HitArea" type="Area2D" parent="CollisionShape2D/Weapon/Sprite2D"]
+unique_name_in_owner = true
+scale = Vector2(1.70749, 1.62798)
+collision_layer = 0
+collision_mask = 2
+
+[node name="HitBox" type="CollisionPolygon2D" parent="CollisionShape2D/Weapon/Sprite2D/HitArea"]
+unique_name_in_owner = true
+rotation = -0.00258431
+scale = Vector2(0.999247, 0.995365)
+polygon = PackedVector2Array(-514, -210, -511, -162, -454.365, 125.242, -128.154, 160.193, 14.563, 180.581, 127, 184, 259.221, 192.231, 369.899, 52.4267, 422.326, -133.979, 256.308, -241.745, -69.9023, -288.347, -336, -242)
+disabled = true
+
+[node name="FireRate" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+autostart = true
+
+[node name="SlashSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0ig7s")
+volume_db = -14.0
+max_polyphony = 2
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
