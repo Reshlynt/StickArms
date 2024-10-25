@@ -1,0 +1,282 @@
+[gd_scene load_steps=11 format=3 uid="uid://cn88yvujw1flg"]
+
+[ext_resource type="Script" path="res://game_manage/game_manager.gd" id="1_gd34c"]
+[ext_resource type="PackedScene" uid="uid://bdhnytpd8u7s2" path="res://player/player.tscn" id="2_rqvhg"]
+[ext_resource type="Texture2D" uid="uid://cppiw8ed24xhv" path="res://ui_assets/pause-icon.png" id="3_jb0pa"]
+[ext_resource type="Texture2D" uid="uid://c40eg3671d2ma" path="res://ui_assets/paused.png" id="4_xfgx0"]
+[ext_resource type="Script" path="res://game_manage/pause_manager.gd" id="5_mqvo1"]
+[ext_resource type="Texture2D" uid="uid://dx0fp7s1at8si" path="res://ui_assets/resume.png" id="5_oej0c"]
+[ext_resource type="Texture2D" uid="uid://c2h2o2fnw80n2" path="res://ui_assets/quit-white.png" id="6_h8y6q"]
+[ext_resource type="PackedScene" uid="uid://o287tvwofyxp" path="res://environment/tree.tscn" id="8_7yr0o"]
+[ext_resource type="Texture2D" uid="uid://buffqm6psc8sb" path="res://ui_assets/game-over.png" id="8_ec7v4"]
+
+[sub_resource type="Curve2D" id="Curve2D_vc822"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -149, -176, 0, 0, 0, 0, -151, 852, 0, 0, 0, 0, 1474, 846, 0, 0, 0, 0, 1472, -171, 0, 0, 0, 0, -149, -176)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_gd34c")
+
+[node name="PauseManager" type="Node" parent="."]
+script = ExtResource("5_mqvo1")
+
+[node name="PauseScreen" type="CanvasLayer" parent="PauseManager"]
+unique_name_in_owner = true
+visible = false
+
+[node name="PauseControl" type="Control" parent="PauseManager/PauseScreen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseManager/PauseScreen/PauseControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.427451, 0.427451, 0.427451, 0.721569)
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseText" type="Sprite2D" parent="PauseManager/PauseScreen/PauseControl"]
+position = Vector2(968, 360)
+scale = Vector2(1.74854, 1.74854)
+texture = ExtResource("4_xfgx0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseManager/PauseScreen/PauseControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.9999
+offset_top = -68.0
+offset_right = 192.0
+offset_bottom = 464.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.691332, 0.691332)
+
+[node name="Resume" type="Button" parent="PauseManager/PauseScreen/PauseControl/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+icon = ExtResource("5_oej0c")
+flat = true
+
+[node name="Quit" type="Button" parent="PauseManager/PauseScreen/PauseControl/VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Resume")
+icon = ExtResource("6_h8y6q")
+flat = true
+
+[node name="HeadUpDisplay" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseButton" type="Button" parent="HeadUpDisplay"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -78.0
+offset_top = 9.0
+offset_right = 184.0
+offset_bottom = 257.0
+grow_horizontal = 0
+scale = Vector2(0.233569, 0.233569)
+icon = ExtResource("3_jb0pa")
+flat = true
+
+[node name="Player" parent="." instance=ExtResource("2_rqvhg")]
+unique_name_in_owner = true
+position = Vector2(576, 324)
+speed = 160
+
+[node name="Background" type="CanvasLayer" parent="Player"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Player/Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.925886, 0.998172, 0.971855, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-832.95, -385.292)
+scale = Vector2(1.26523, 1.15175)
+curve = SubResource("Curve2D_vc822")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-149, -176)
+rotation = 1.57274
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.299547, 0.299547, 0.299547, 0.572549)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOver/ColorRect"]
+position = Vector2(944, 384)
+scale = Vector2(0.485272, 0.485272)
+texture = ExtResource("8_ec7v4")
+
+[node name="QuitToMenu" type="Button" parent="GameOver/ColorRect"]
+process_mode = 2
+top_level = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -20.0
+offset_right = 160.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.836202, 0.950939)
+theme_override_font_sizes/font_size = 36
+action_mode = 0
+icon = ExtResource("6_h8y6q")
+flat = true
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+position = Vector2(-1938, -1450)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(-331, -81, -379, 3288, 5404, 3192, 5290, 9, -84, -116, -93, 139, 5112, 180, 5252, 3050, -196, 3063, -91, -81)
+one_way_collision_margin = 0.0
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Tree" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(3184, 1488)
+
+[node name="Tree15" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2512, 752)
+
+[node name="Tree16" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-672, 1176)
+
+[node name="Tree17" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1024, -800)
+
+[node name="Tree18" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(688, -448)
+
+[node name="Tree19" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-360, -248)
+
+[node name="Tree20" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1640, 784)
+
+[node name="Tree21" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1392, -304)
+
+[node name="Tree22" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(488, 1192)
+
+[node name="Tree23" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1760, 512)
+
+[node name="Tree24" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1856, 1176)
+
+[node name="Tree25" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1200, 1320)
+
+[node name="Tree26" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2424, 0)
+
+[node name="Tree27" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2600, -680)
+
+[node name="Tree28" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1072, -1032)
+
+[node name="Tree29" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-24, -920)
+
+[node name="Tree4" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-2016, 1480)
+
+[node name="Tree5" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1936, -1184)
+
+[node name="Tree6" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(3056, -1152)
+
+[node name="Tree7" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1968, -736)
+
+[node name="Tree8" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2088, -736)
+
+[node name="Tree9" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2032, -648)
+
+[node name="Tree10" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(2024, -824)
+
+[node name="Tree11" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1208, 376)
+
+[node name="Tree12" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1088, 376)
+
+[node name="Tree13" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1144, 464)
+
+[node name="Tree14" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-1152, 288)
+
+[node name="Tree2" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(392, 304)
+
+[node name="Tree30" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(-168, 544)
+
+[node name="Tree31" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1120, 712)
+
+[node name="Tree32" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(1200, -384)
+
+[node name="Tree3" parent="CanvasGroup" instance=ExtResource("8_7yr0o")]
+position = Vector2(808, 368)
+
+[connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Resume" to="PauseManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseManager/PauseScreen/PauseControl/VBoxContainer/Quit" to="PauseManager" method="_on_quit_pressed"]
+[connection signal="pressed" from="HeadUpDisplay/PauseButton" to="PauseManager" method="_on_pause_button_pressed"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/ColorRect/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
