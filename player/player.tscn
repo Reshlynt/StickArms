@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdhnytpd8u7s2"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_g1wyw"]
+[ext_resource type="Texture2D" uid="uid://cqoiohxmawnud" path="res://test-assets/not-happy-ball.png" id="2_dm3nd"]
+[ext_resource type="PackedScene" uid="uid://dbk1vgdhsl6c4" path="res://player/weapons/slash.tscn" id="3_5oqgq"]
+[ext_resource type="AudioStream" uid="uid://dst8oqwqlpm3h" path="res://sfx/playerDeath-trim.mp3" id="4_7sdt2"]
+[ext_resource type="AudioStream" uid="uid://bq4c5kr1sypa8" path="res://sfx/footstepsPlayer.mp3" id="5_2d00p"]
+[ext_resource type="AudioStream" uid="uid://dn1djpqos8qur" path="res://sfx/streetAmbiance.mp3.mp3" id="5_y2hsm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_meo1u"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2a53m"]
+radius = 33.0606
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nq8o5"]
+bg_color = Color(0.0745098, 0.223529, 0.137255, 0.968627)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_su122"]
+bg_color = Color(0.188235, 0.8, 0.52549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_g1wyw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.724664, 0.72623, 1)
+position = Vector2(-6, 9)
+scale = Vector2(0.0395161, 0.0417332)
+texture = ExtResource("2_dm3nd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_meo1u")
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+light_mask = 0
+visibility_layer = 2
+shape = SubResource("CircleShape2D_2a53m")
+debug_color = Color(0.925022, 0.203444, 0.465446, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+z_index = 1
+offset_left = -48.0
+offset_top = 45.0
+offset_right = 50.0
+offset_bottom = 72.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nq8o5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_su122")
+value = 100.0
+show_percentage = false
+
+[node name="Slash" parent="." instance=ExtResource("3_5oqgq")]
+
+[node name="PlayerDeath" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+position = Vector2(-576, -324)
+stream = ExtResource("4_7sdt2")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="Playermovement" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2d00p")
+
+[node name="backgroundmusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_y2hsm")
+autoplay = true
+parameters/looping = true
+
+[connection signal="stop_slash_sfx" from="." to="Slash" method="_on_player_stop_slash_sfx"]
